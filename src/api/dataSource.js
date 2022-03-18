@@ -1,5 +1,5 @@
 
-import axios from '../httpCommon';
+import axios from './httpCommon';
 const DataSource = {
 
     apiCall(endpoint, method, data){
