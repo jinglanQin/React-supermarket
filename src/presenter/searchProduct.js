@@ -1,22 +1,42 @@
 import DataSource from "../api/dataSource";
 import React,{useState, useEffect} from "react";
 import PromiseNoData from "../promiseNoData";
+import SearchProductByID from "../view/SearchProductByID";
 const { default: usePromise } = require("../components/usePromise");
-const {default: HomeView}= require("../view/HomeView");
+const {default: ProductDetail}= require("../view/ProductDetail");
 
 function SearchProduct() {
-    
-
-    const [search, setSearch] = useState(null);
-
-    useEffect(() => { setSearch(DataSource.getProduct())}, []);
-
-    const [data, error] = usePromise(search);
+    //const [search, setSearch] = useState(null);
+    const [query, setQuery] = React.useState("");
+    const [promise, setPromise]=React.useState(null);
+   //useEffect(()=> {setPromise(DataSource.getProduct(query))},[query])
+    //useEffect(() => { setSearch(DataSource.getProduct())}, []);
+    const [data, error] = usePromise(promise);
     console.log(data);
+    console.log(query);
     
-    return (PromiseNoData(search, data, error) || <HomeView 
-                product={data.data}
-            />)
+    return (
+        <React.Fragment>
+        <div>
+            <SearchProductByID 
+                onText={(query)=>setQuery(query)}
+                onSearch={()=> setPromise(DataSource.getProduct(query))}
+                />
+        </div>
+        
+        {data!=null ?(
+        <div>
+            {PromiseNoData(promise, data, error)||
+            (data && <ProductDetail product={data.data}/>)}
+        </div>) :(<div></div>)}
+         </React.Fragment>)
+
+
+      /*  PromiseNoData(promise, data, error) || <ProductDetail 
+                product={data.data} 
+                onText={(query)=>setQuery(query)}
+                onSearch={()=> setPromise(DataSource.getProduct(query))}
+            />)*/
 
 
 /*
