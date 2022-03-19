@@ -5,6 +5,7 @@ import MultiFunctionsForStaff from "../view/multiFunctionsForStaff";
 import ProductDetail from "../view/productDetailForCustomer";
 import UpdateProduct from "../view/updateProduct";
 import Alert from "../view/alert";
+import NavBar from "../view/navBar";
 const { default: usePromise } = require("../components/usePromise");
 
 function MultiFunction() {
@@ -24,6 +25,10 @@ function MultiFunction() {
     }*/
     return (
         <React.Fragment>
+            <div>
+                <NavBar></NavBar>
+            </div>
+
         <div>
             <MultiFunctionsForStaff handleSelect={(option)=>setOption(option)}
                 onText={(query)=>setQuery(query)}
