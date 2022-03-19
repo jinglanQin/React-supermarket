@@ -1,9 +1,9 @@
 import DataSource from "../api/dataSource";
 import React,{useState, useEffect} from "react";
 import PromiseNoData from "../promiseNoData";
-import SearchProductByID from "../view/SearchProductByID";
+import SearchProductByID from "../view/searchProductByID";
 const { default: usePromise } = require("../components/usePromise");
-const {default: ProductDetail}= require("../view/ProductDetail");
+const {default: ProductDetail}= require("../view/productDetailForCustomer");
 
 function SearchProduct() {
     //const [search, setSearch] = useState(null);
@@ -28,7 +28,7 @@ function SearchProduct() {
         <div>
             {PromiseNoData(promise, data, error)||
             (data && <ProductDetail product={data.data}/>)}
-        </div>) :(<div></div>)}
+        </div>) :(<div></div>)} 
          </React.Fragment>)
 
 

@@ -2,7 +2,7 @@ import React from 'react';
 
 function usePromise(promise) {  
    // console.log(JSON.stringify(promise));
-    
+
     const [data, setData]= React.useState(null);
     const [error, setError]=React.useState(null);
     React.useEffect(function(){ 

@@ -1,11 +1,12 @@
 import React from 'react';
 import {Container} from 'react-bootstrap';
 import {Table} from 'react-bootstrap';
+import Alert from "./alert";
 
 function ProductDetail({product}) {
     return( 
         <Container>
-            {product==="" ? (<div>Wrong ID number</div>) :(
+            {product==="" ? ( <Alert variant={"warning"} message={"WrongID, Please enter the correct barcode."} ></Alert>) :(
             <Table striped border="true" hover>
         <thead>
             <tr>
