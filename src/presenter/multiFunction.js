@@ -1,6 +1,6 @@
 import DataSource from "../api/dataSource";
 import React,{useState, useEffect} from "react";
-import PromiseNoData from "../promiseNoData";
+import PromiseNoData from "../view/promiseNoData";
 import MultiFunctionsForStaff from "../view/multiFunctionsForStaff";
 import ProductDetail from "../view/productDetailForCustomer";
 import UpdateProduct from "../view/updateProduct";
@@ -13,16 +13,15 @@ function MultiFunction() {
     const [query, setQuery] = React.useState("");
     const [promise, setPromise] = useState(null);
     const [data, error] = usePromise(promise);
+    const [show, setShow]= useState("");
+    useEffect(()=> {setPromise(null)},[option]);
+    
     console.log(data);
     console.log(query);
     console.log(option);
     console.log(error);
-    //useEffect(()=> {setPromise(DataSource.multiFunction(option, query))},[option, query])
-
-   /* const handleSelect=(e)=>{
-      console.log(e);
-      setValue(e)
-    }*/
+    console.log(show);
+  
     return (
         <React.Fragment>
             <div>
@@ -32,29 +31,29 @@ function MultiFunction() {
         <div>
             <MultiFunctionsForStaff handleSelect={(option)=>setOption(option)}
                 onText={(query)=>setQuery(query)}
-                onSearch={()=> setPromise(DataSource.multiFunction(option, query))}
+                onSearch={()=> setPromise(DataSource.multiFunction(option, query), setShow(option))}
             ></MultiFunctionsForStaff>
         </div>
 
-        {data!=null && option==="#/search" ?(
+        {option==="#/search"&& "#/search"===show && promise!=null ?(
         <div>
             {PromiseNoData(promise, data, error)||
             (data && <ProductDetail product={data.data}/>)}
         </div>) :(<div></div>)}
 
-        {option==="#/delete" ?(
+        {option==="#/delete" && "#/delete"  ===show && promise!=null  ?(
         <div>
             {PromiseNoData(promise, data, error)||
             (data && <Alert variant={"info"} message={data.data}></Alert>)}
         </div>) :(<div></div>)}
 
-        {data!=null && option==="#/insert" ?(
+        {option==="#/insert" && "#/insert" ===show && promise!=null ?(
         <div>
             {PromiseNoData(promise, data, error)||
             (data && <Alert variant={"info"} message={data.data}></Alert>)}
         </div>) :(<div></div>)}
 
-        {data!=null && option==="#/update" ?(
+        { option==="#/update"&& "#/update"===show && promise!=null  ?(
         <div>
             {PromiseNoData(promise, data, error)||
             (data && <UpdateProduct product={data.data} ></UpdateProduct>)}

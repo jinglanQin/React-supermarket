@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Spinner } from "react-bootstrap";
-import Alert from "./view/alert";
+import Alert from "./alert";
 
 function PromiseNoData(promise, data, error) {
 	console.log(error);
@@ -8,8 +8,8 @@ function PromiseNoData(promise, data, error) {
 	console.log(data);
 	return (
 		(error && <Alert variant={"warning"} message={"Error"}></Alert>) || 
-		(!promise && <Alert variant={"warning"} message={"nodata"}></Alert>)|| 
-		(!data && (<Spinner animation="border" role="status"></Spinner>)) 
+		(!data && (<Spinner animation="border" role="status"></Spinner>)) ||
+		(!promise && <Alert variant={"warning"} message={"nodata"}></Alert>)
 	
 	
 	); 

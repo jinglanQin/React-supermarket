@@ -14,11 +14,11 @@ function navbarView() {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <LinkContainer to="/staff" >
-                            <Nav.Link>Staff</Nav.Link>
-                        </LinkContainer>
                         <LinkContainer to="/customer" >
                             <Nav.Link>Customer</Nav.Link>
+                        </LinkContainer>
+                        <LinkContainer to="/staff" >
+                            <Nav.Link>Staff</Nav.Link>
                         </LinkContainer>
                     </Nav>
                 </Navbar.Collapse>

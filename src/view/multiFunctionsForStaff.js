@@ -24,7 +24,7 @@ function MultiFunction({handleSelect, onText, onSearch}) {
                       onChange={event=>onText(event.target.value)}></textarea>
             </div>
             <div>
-                <button type = "button" onClick={onSearch}>Search</button>
+                <button type = "button" onClick={onSearch}>Submit</button>
             </div>
 
         </Container>
