@@ -15,12 +15,21 @@ function MultiFunction() {
     const [data, error] = usePromise(promise);
     const [show, setShow]= useState("");
     useEffect(()=> {setPromise(null)},[option]);
-    
+    const [values, setValues]= useState({});
+    useEffect(()=> {if(data!=null){setValues(data.data)}},[data]);// set default Values to updateProduct
+    const [updateRes, SetUpdateRes]=useState(false);
+
     console.log(data);
     console.log(query);
     console.log(option);
     console.log(error);
     console.log(show);
+    console.log("values"+values);
+    console.log(updateRes);
+    //useEffect(()=> {console.log(values.name)},[values]);
+
+
+
   
     return (
         <React.Fragment>
@@ -31,7 +40,7 @@ function MultiFunction() {
         <div>
             <MultiFunctionsForStaff handleSelect={(option)=>setOption(option)}
                 onText={(query)=>setQuery(query)}
-                onSearch={()=> setPromise(DataSource.multiFunction(option, query), setShow(option))}
+                onSearch={()=> setPromise(DataSource.multiFunction(option, query), setShow(option), SetUpdateRes(false))}
             ></MultiFunctionsForStaff>
         </div>
 
@@ -56,8 +65,19 @@ function MultiFunction() {
         { option==="#/update"&& "#/update"===show && promise!=null  ?(
         <div>
             {PromiseNoData(promise, data, error)||
-            (data && <UpdateProduct product={data.data} ></UpdateProduct>)}
+            (data && <UpdateProduct 
+                product={data.data} 
+                handleOnChange={(event)=>{
+                    setValues(values =>{return {...values, [event.target.name]:event.target.value}})}}
+                   // setValues((values) =>{return { "name":event.target.value, "location_x":parseInt(event.target.value) }})}}
+                onUpdate={()=>setPromise(DataSource.updateProduct(data.data.upc14 ,values),SetUpdateRes(true), setValues(null))}
+                updateRes={updateRes}
+                info={values}
+                 ></UpdateProduct>)}
         </div>) :(<div></div>)}
+
+
+      
 
 
         </React.Fragment>

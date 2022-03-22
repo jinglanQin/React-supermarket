@@ -21,18 +21,8 @@ const DataSource = {
         } else if(method === "POST"){
             return axios.post(endpoint, data);
         }
-        // ? put
-        else if(method==="PUT"){
-            return axios.put(endpoint, data);
-        }
         else if(method==="DELETE"){
             return axios.delete(endpoint + "?"+"id="+data);
-        }
-        else if(method==="POST"){
-            return axios.post(endpoint,data);// data is request body
-        }
-        else if(method==="UPDATE"){
-            
         }
     },
 
@@ -62,7 +52,14 @@ const DataSource = {
         else if(option==="#/update"){
             return this.getProduct(param);
         }
+    },
+
+    updateProduct(head, body){
+        console.log("from datasource"+head);
+        console.log("from datasource"+body);
+        return axios.put("/updateProduct"+"?id="+head, body);
     }
+
 
   
 }
