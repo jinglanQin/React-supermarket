@@ -55,8 +55,10 @@ function UpdateProduct({product, handleOnChange, onUpdate, updateRes, info}) {
                  placeholder={product.location_y} defaultValue={product.location_y} onChange={handleOnChange}  ></input>
                  </td>
             </tr>
+            <tr><button type = "button" onClick={onUpdate} >Update</button></tr>
         </table>)}
-        <button type = "button" onClick={onUpdate} >Update</button>
+
+
         </Container>
     )
             }
