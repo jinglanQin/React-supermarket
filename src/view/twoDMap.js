@@ -41,7 +41,7 @@ const test= [{name:"one", x: "40", y:"20",width:"10", height:"20"}, {name:"two",
                   shadowBlur={10}
                 />
                 {product!=null ? (
-                  <Circle x={product.data.location_x} y={product.data.location_y} radius={5} fill="red" />):(<div></div>)}
+                  <Circle x={product.data.location_x/room.scale} y={product.data.location_y/room.scale} radius={5} fill="red" />):(<div></div>)}
 
         
                 {containers.map(container => (container.room_id===room.room_id? (
