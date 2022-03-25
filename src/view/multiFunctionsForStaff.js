@@ -4,13 +4,15 @@ import {Table} from 'react-bootstrap';
 import {useState} from "react";
 import { Dropdown, MenuItem, DropdownButton } from "react-bootstrap";
 
-function MultiFunction({handleSelect, onText, onSearch}) {
+function MultiFunction({option, object,handleSelect,OnSelectObject, onText, onSearch}) {
+
     return( 
         <Container>
             <br></br>
+            <div className="btn-group btn-group-inline">
              <Dropdown onSelect={handleSelect} >  
                 <Dropdown.Toggle variant="success" id="dropdown-basic">
-                    Select method
+                    {option.replace('#/', '')}
                    </Dropdown.Toggle>
                    <Dropdown.Menu>
                       <Dropdown.Item href="#/update">update</Dropdown.Item>
@@ -18,7 +20,19 @@ function MultiFunction({handleSelect, onText, onSearch}) {
                       <Dropdown.Item href="#/search">search</Dropdown.Item>
                       <Dropdown.Item href="#/insert">insert</Dropdown.Item>
                       </Dropdown.Menu>
-            </Dropdown>    
+            </Dropdown> 
+
+            <Dropdown onSelect={OnSelectObject} >  
+                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                {object.replace('#/', '')}
+                   </Dropdown.Toggle>
+                   <Dropdown.Menu>
+                      <Dropdown.Item href="#/product">product</Dropdown.Item>
+                      <Dropdown.Item href="#/container">container</Dropdown.Item>
+                      </Dropdown.Menu>
+            </Dropdown> 
+            
+            </div>
             <div>
                 <textarea type="text" placeholder="" id ="select" rows ="6" cols ="50"
                       onChange={event=>onText(event.target.value)}></textarea>

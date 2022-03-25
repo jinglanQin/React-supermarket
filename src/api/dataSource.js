@@ -39,18 +39,31 @@ const DataSource = {
         return this.apiCall("/insertProduct", "POST", param);
     },
 
-    multiFunction(option, param){
-        if(option === "#/search"){
-            return this.getProduct(param);
+    multiFunction(option, param, object){
+        if(object==="#/product"){
+            if(option === "#/search"){
+                return this.getProduct(param);
+            }
+            else if(option==="#/delete") {
+                return this.deleteProduct(param);
+            }
+            else if(option ==="#/insert"){
+                return this.insertProduct(param);
+            }
+            else if(option==="#/update"){
+                return this.getProduct(param);
+            }
         }
-        else if(option==="#/delete") {
-            return this.deleteProduct(param);
-        }
-        else if(option ==="#/insert"){
-            return this.insertProduct(param);
-        }
-        else if(option==="#/update"){
-            return this.getProduct(param);
+        if(object==="#/container"){
+            if(option==="#/insert"){
+                return this.insertContainer(param);
+            }
+            else if(option==="#/search"){
+                return this.getContainer(param);
+            }
+            else if(option==="#/delete"){
+                return this.deleteContainer(param);
+            }
         }
     },
 
@@ -60,9 +73,25 @@ const DataSource = {
         return axios.put("/updateProduct"+"?id="+head, body);
     },
 
-    getContainers(){
-        return this.apiCall("/getContainers", "GET", null).then(response => this.handleHTTPError(response))
+    getAllContainers(){
+        return this.apiCall("/getAllContainers", "GET", null).then(response => this.handleHTTPError(response))
         .then(response => response);
     },
+
+    insertContainer(param){
+        return this.apiCall("/insertContainer", "POST", param).then(response => this.handleHTTPError(response))
+        .then(response => response);
+    },
+    getContainer(param){
+        return this.apiCall("/getContainer", "GET", param).then(response => this.handleHTTPError(response))
+        .then(response => response);
+    },
+
+    deleteContainer(param){
+        return this.apiCall("/deleteContainer", "DELETE", param).then(response => this.handleHTTPError(response)).then(response => response);;
+    },
+
+
+
 }
 export default DataSource;

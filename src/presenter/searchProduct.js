@@ -16,7 +16,7 @@ function SearchProduct() {
 
     const [promiseContainers, setContainerPromise]=React.useState(null);
     const [containers, containerError]= usePromise(promiseContainers);
-    useEffect(()=>{setContainerPromise(DataSource.getContainers())},[]);
+    useEffect(()=>{setContainerPromise(DataSource.getAllContainers())},[]);
 
     const key = 'room_id';
     const [rooms, setRooms]=useState("");
