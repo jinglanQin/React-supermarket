@@ -3,17 +3,28 @@ import React,{useState, useEffect} from "react";
 import PromiseNoData from "../view/promiseNoData";
 import SearchProductByID from "../view/searchProductByID";
 import NavBar from "../view/navBar";
+import TwoDMap from "../view/twoDMap";
 const { default: usePromise } = require("../components/usePromise");
 const {default: ProductDetail}= require("../view/productDetailForCustomer");
 
 function SearchProduct() {
     const [query, setQuery] = React.useState("");
     const [promise, setPromise]=React.useState(null);
-   //useEffect(()=> {setPromise(DataSource.getProduct(query))},[query])
-    //useEffect(() => { setSearch(DataSource.getProduct())}, []);
     const [data, error] = usePromise(promise);
     console.log(data);
     console.log(query);
+
+    const [promiseContainers, setContainerPromise]=React.useState(null);
+    const [containers, containerError]= usePromise(promiseContainers);
+    useEffect(()=>{setContainerPromise(DataSource.getContainers())},[]);
+
+    const key = 'room_id';
+    const [rooms, setRooms]=useState("");
+    //get distinct rooms from containerTable
+    useEffect(()=>{if(containers!=null && containers.data!=null){
+    setRooms([...new Map(containers.data.map(item =>
+    [item[key], item])).values()])
+    }},[containers]);
     
     return (
         <React.Fragment>
@@ -33,7 +44,12 @@ function SearchProduct() {
                 {PromiseNoData(promise, data, error)||
                 (data && <ProductDetail product={data.data}/>)}
             </div>) :(<div></div>)} 
+            
+            {PromiseNoData(promiseContainers, containers, containerError)||
+            rooms && <TwoDMap containers={containers.data} rooms={rooms} product={data}></TwoDMap>}
+ 
             </React.Fragment>)
+
 }
 
 export default SearchProduct;

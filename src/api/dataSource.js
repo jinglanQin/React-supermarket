@@ -58,9 +58,11 @@ const DataSource = {
         console.log("from datasource"+head);
         console.log("from datasource"+body);
         return axios.put("/updateProduct"+"?id="+head, body);
-    }
+    },
 
-
-  
+    getContainers(){
+        return this.apiCall("/getContainers", "GET", null).then(response => this.handleHTTPError(response))
+        .then(response => response);
+    },
 }
 export default DataSource;
