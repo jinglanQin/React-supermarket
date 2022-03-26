@@ -4,8 +4,8 @@ import { Stage, Layer, Rect, Text, Circle, Line } from 'react-konva';
 import { Container } from "react-bootstrap";
 
 function TwoDMap({containers, rooms, product}){
-const [width, setWidth] = useState(window.innerWidth);
-const [height, setHeight]=useState(window.innerHeight);
+const [width, setWidth] = useState(window.innerWidth-20);
+const [height, setHeight]=useState(window.innerHeight-20);
 console.log(rooms.room_centerLocation_x);
 useEffect(() => {
   const handleResize = (() => setWidth(window.innerWidth), setHeight(window.innerHeight));
@@ -25,9 +25,11 @@ rooms.forEach(function (element) {
 const test= [{name:"one", x: "40", y:"20",width:"10", height:"20"}, {name:"two",x:"60",y:"20",width:"10", height:"20"}];
 
     return (
+   
+      <div>
+        {rooms.map(room => (
+        <Stage width={width} height={height}> 
 
-        <Stage width={window.innerWidth} height={window.innerHeight}> 
-              {rooms.map(room => (
                         
             <Layer key={room.room_id} >
                 <Text text="" fontSize={10} />
@@ -54,8 +56,10 @@ const test= [{name:"one", x: "40", y:"20",width:"10", height:"20"}, {name:"two",
                   shadowBlur={10}
                 />) :(<div></div>)))}
  
-              </Layer>))}
-            </Stage>
+              </Layer>
+            </Stage>))}
+           </div>
+       
  
                 )    
 }
