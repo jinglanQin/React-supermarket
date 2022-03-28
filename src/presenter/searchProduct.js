@@ -18,11 +18,11 @@ function SearchProduct() {
     const [containers, containerError]= usePromise(promiseContainers);
     useEffect(()=>{setContainerPromise(DataSource.getAllContainers())},[]);
 
-    const key = 'room_id';
-    const [rooms, setRooms]=useState("");
-    //get distinct rooms from containerTable
+    const key = 'floor_id';
+    const [floors, setFloors]=useState("");
+    //get distinct floors from containerTable
     useEffect(()=>{if(containers!=null && containers.data!=null){
-    setRooms([...new Map(containers.data.map(item =>
+    setFloors([...new Map(containers.data.map(item =>
     [item[key], item])).values()])
     }},[containers]);
     
@@ -46,7 +46,7 @@ function SearchProduct() {
             </div>) :(<div></div>)} 
             
             {PromiseNoData(promiseContainers, containers, containerError)||
-            rooms && <TwoDMap containers={containers.data} rooms={rooms} product={data}></TwoDMap>}
+            floors && <TwoDMap containers={containers.data} floors={floors} product={data}></TwoDMap>}
  
             </React.Fragment>)
 

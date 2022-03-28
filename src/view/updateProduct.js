@@ -42,6 +42,14 @@ function UpdateProduct({product, handleOnChange, onUpdate, updateRes, info}) {
 
             </tr>
             <tr> 
+                <th>Floor</th>
+                <td><input type="text" id="floor_id" name="floor_id" requiredminlength="4" maxLength="" size="70"
+                className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"
+                 placeholder={product.floor_id} defaultValue={product.floor_id}  onChange={handleOnChange}  ></input>
+                 </td>
+
+            </tr>
+            <tr> 
                 <th>Location_x</th>
                 <td><input type="text" id="location_x" name="location_x" requiredminlength="4" maxLength="" size="70"
                 className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"

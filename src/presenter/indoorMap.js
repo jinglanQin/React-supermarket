@@ -12,24 +12,24 @@ const [promiseContainers, setContainerPromise]=React.useState(null);
 const [containers, containerError]= usePromise(promiseContainers);
 useEffect(()=>{setContainerPromise(DataSource.getAllContainers())},[]);
 
-const key = 'room_id';
-const [rooms, setRooms]=useState("");
+const key = 'floor_id';
+const [floors, setFloors]=useState("");
 //get distinct rooms from containerTable
 useEffect(()=>{if(containers!=null && containers.data!=null){
-  setRooms([...new Map(containers.data.map(item =>
+  setFloors([...new Map(containers.data.map(item =>
     [item[key], item])).values()])
 }},[containers]);
 /*
 const arrayUniqueByKey = [...new Map(containers.map(item =>
   [item[key], item])).values()];*/
 
-console.log("Rooms"+rooms);
+console.log("Rooms"+floors);
 
 return (
 <React.Fragment>
   <div>
   {PromiseNoData(promiseContainers, containers, containerError)||
-    rooms && <TwoDMap containers={containers.data} rooms={rooms} product={null}></TwoDMap>}
+    floors && <TwoDMap containers={containers.data} floors={floors} product={null}></TwoDMap>}
   </div>
 </React.Fragment>
 )

@@ -3,10 +3,10 @@ import { MapContainer, TileLayer, Marker, Popup, MapControl,Polygon } from 'reac
 import { Stage, Layer, Rect, Text, Circle, Line } from 'react-konva';
 import { Container } from "react-bootstrap";
 
-function TwoDMap({containers, rooms, product}){
+function TwoDMap({containers, floors, product}){
 const [width, setWidth] = useState(window.innerWidth-20);
 const [height, setHeight]=useState(window.innerHeight-20);
-console.log(rooms.room_centerLocation_x);
+
 useEffect(() => {
   const handleResize = (() => setWidth(window.innerWidth), setHeight(window.innerHeight));
   window.addEventListener("resize", handleResize);
@@ -17,50 +17,80 @@ useEffect(() => {
 console.log("new"+width);
 console.log("new"+height);
 
-//add the scale to each rooms.
-rooms.forEach(function (element) {
-  element.scale = (element.room_opposite_x/width)
+//add the scale to each floors.
+floors.forEach(function (element) {
+  element.scale = (element.floor_oppositePoint.match(/\d+/g).map(Number)[0]/width)
 });
-
+const numbers="0,0,100,20,10,20";
 const test= [{name:"one", x: "40", y:"20",width:"10", height:"20"}, {name:"two",x:"60",y:"20",width:"10", height:"20"}];
 
     return (
-   
       <div>
-        {rooms.map(room => (
-        <Stage width={width} height={height}> 
-
+        {floors.map(floor => (
+        <Stage key={floor.floor_id} width={width} height={height}>
                         
-            <Layer key={room.room_id} >
-                <Text text="" fontSize={10} />
+            <Layer key={floor.floor_id} >
+                <Text text={"floor"+floor.floor_id} fontSize={30} />
+                  {floor.shapeOfFloor==="rect" ?(
                 <Rect
-                key={room.room_id}
-                  x={room.room_centerLocation_x/room.scale}
-                  y={room.room_centerLocation_y/room.scale}
-                  width={(room.room_opposite_x-room.room_centerLocation_x)/room.scale}
-                  height={(room.room_opposite_y-room.room_centerLocation_y)/room.scale}
+                  key={floor.floor_id}
+                  x={floor.floor_centerPoint.match(/\d+/g).map(Number)[0]/floor.scale}
+                  y={floor.floor_centerPoint.match(/\d+/g).map(Number)[1]/floor.scale}
+                  width={(floor.floor_oppositePoint.match(/\d+/g).map(Number)[0] - floor.floor_centerPoint.match(/\d+/g).map(Number)[0])/floor.scale}
+                  height={(floor.floor_oppositePoint.match(/\d+/g).map(Number)[1] - floor.floor_centerPoint.match(/\d+/g).map(Number)[0])/floor.scale}
                   stroke="black"
                   shadowBlur={10}
-                />
-                {product!=null ? (
-                  <Circle x={product.data.location_x/room.scale} y={product.data.location_y/room.scale} radius={5} fill="red" />):(<div></div>)}
+                />):(<div></div>)}
 
+                {floor.shapeOfFloor==="poly"?(
+                <Line key={floor.floor_id}
+                  x={0}
+                  y={0}
+                  points={floor.floor_polygonPoints.match(/\d+/g).map(Number).map(x => x/floor.scale)}
+                  tension={0}
+                  closed
+                  stroke="black"
+                  shadowBlur={10}
+                />):(<div></div>)}
+                
+                {product!=null && product.data.floor_id===floor.floor_id ? (
+                <Circle key = {product.upd14} x={product.data.location_x/floor.scale} 
+                  y={product.data.location_y/floor.scale} radius={5} fill="red" />):(<div></div>)}
+
+                {containers.map(container => ((container.floor_id===floor.floor_id && container.shapeOfContainer==="circ")? (
+                <Circle key={container.id} 
+                  x={container.containerCenterPoint.match(/\d+/g).map(Number)[0]/floor.scale} 
+                  y={container.containerCenterPoint.match(/\d+/g).map(Number)[1]/floor.scale} 
+                  radius={container.radiusOfContainer/floor.scale} 
+                  
+                  stroke="black"  />) :(<div></div>)))}
         
-                {containers.map(container => (container.room_id===room.room_id? (
+                {containers.map(container => (container.floor_id===floor.floor_id && container.shapeOfContainer==="rect"? (
                 <Rect key={container.id}
-                  x={container.centerLocation_x/room.scale}
-                  y={container.centerLocation_y/room.scale}
-                  width={(container.opposite_x - container.centerLocation_x)/room.scale}
-                  height={(container.opposite_y - container.centerLocation_y)/room.scale}
+                 text={container.name}
+                  x={container.containerCenterPoint.match(/\d+/g).map(Number)[0]/floor.scale}
+                  y={container.containerCenterPoint.match(/\d+/g).map(Number)[1]/floor.scale}
+                  width={(container.containerOppositePoint.match(/\d+/g).map(Number)[0] - container.containerCenterPoint.match(/\d+/g).map(Number)[0])/floor.scale}
+                  height={(container.containerOppositePoint.match(/\d+/g).map(Number)[1] - container.containerCenterPoint.match(/\d+/g).map(Number)[1])/floor.scale}
                   stroke="black"
                   shadowBlur={10}
                 />) :(<div></div>)))}
- 
+
+                 {containers.map(container => (container.floor_id===floor.floor_id && container.shapeOfContainer==="poly"? (
+                <Line key={container.id}
+                  x={0}
+                  y={0}
+                  points={container.container_polygonPoints.match(/\d+/g).map(Number).map(x => x/floor.scale)}
+                  tension={0}
+                  closed
+                  stroke="black"
+                  shadowBlur={10}
+                />) :(<div></div>)))}
               </Layer>
-            </Stage>))}
+            </Stage>
+            ))}
            </div>
-       
- 
+
                 )    
 }
 
