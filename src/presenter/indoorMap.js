@@ -10,20 +10,23 @@ function IndoorMap () {
 
 const [promiseContainers, setContainerPromise]=React.useState(null);
 const [containers, containerError]= usePromise(promiseContainers);
+const [promiseFloors, setFloorsPromise]=React.useState(null);
+const [floors, setFloors]= usePromise(promiseFloors);
 useEffect(()=>{setContainerPromise(DataSource.getAllContainers())},[]);
+useEffect(()=>{setFloorsPromise(DataSource.getAllFloors()) },[]);
 
-const key = 'floor_id';
-const [floors, setFloors]=useState("");
+//const key = 'floor_id';
 //get distinct rooms from containerTable
+/*
 useEffect(()=>{if(containers!=null && containers.data!=null){
   setFloors([...new Map(containers.data.map(item =>
     [item[key], item])).values()])
-}},[containers]);
+}},[containers]);*/
 /*
 const arrayUniqueByKey = [...new Map(containers.map(item =>
   [item[key], item])).values()];*/
 
-console.log("Rooms"+floors);
+console.log("floors  "+floors);
 
 return (
 <React.Fragment>

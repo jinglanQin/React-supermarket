@@ -2,11 +2,12 @@ import DataSource from "../api/dataSource";
 import React,{useState, useEffect} from "react";
 import PromiseNoData from "../view/promiseNoData";
 import MultiFunctionsForStaff from "../view/multiFunctionsForStaff";
-import ProductDetail from "../view/productDetailForCustomer";
+import ProductDetail from "../view/productDetailForStaff";
 import UpdateProduct from "../view/updateProduct";
 import ContainerDetail from "../view/containerDetail";
 import Alert from "../view/alert";
 import NavBar from "../view/navBar";
+import FloorDetail from "../view/floorDetail";
 import { Object } from "core-js";
 const { default: usePromise } = require("../components/usePromise");
 
@@ -19,6 +20,7 @@ function MultiFunction() {
     const [promise, setPromise] = useState(null);
     const [data, error] = usePromise(promise);
     const [show, setShow]= useState("");
+    const [floorNumber, setFloorNumber]= useState("");
     useEffect(()=> {setPromise(null)},[option, object]);
     const [values, setValues]= useState({});
     useEffect(()=> {if(data!=null){setValues(data.data)}},[data]);// set default Values to updateProduct
@@ -45,7 +47,9 @@ function MultiFunction() {
             handleSelect={(option)=>setOption(option)}
                 OnSelectObject={(option)=>setObject(option)}
                 onText={(query)=>setQuery(query)}
-                onSearch={()=> setPromise(DataSource.multiFunction(option, query, object), setShow(option), SetUpdateRes(false))}
+                onSearch={()=> setPromise(DataSource.multiFunction(option, query, object,floorNumber), setShow(option), SetUpdateRes(false))}
+                onFloorNumber={(floorNumber)=>setFloorNumber(floorNumber)}
+                 
             ></MultiFunctionsForStaff>
         </div>
 
@@ -75,7 +79,7 @@ function MultiFunction() {
                 handleOnChange={(event)=>{
                     setValues(values =>{return {...values, [event.target.name]:event.target.value}})}}
                    // setValues((values) =>{return { "name":event.target.value, "location_x":parseInt(event.target.value) }})}}
-                onUpdate={()=>setPromise(DataSource.updateProduct(data.data.upc14 ,values),SetUpdateRes(true), setValues(null))}
+                onUpdate={()=>setPromise(DataSource.updateProduct(values),SetUpdateRes(true), setValues(null))}
                 updateRes={updateRes}
                 info={values}
                  ></UpdateProduct>)}
@@ -100,6 +104,25 @@ function MultiFunction() {
             {PromiseNoData(promise, data, error)||
             (data && <Alert variant={"info"} message={data.data}></Alert>)}
         </div>) :(<div></div>)}
+
+        {option==="#/insert" && "#/insert" ===show && object==="#/floor" && promise!=null ?(
+        <div>
+            {PromiseNoData(promise, data, error)||
+            (data && <Alert variant={"info"} message={data.data}></Alert>)}
+        </div>) :(<div></div>)}
+        {option==="#/search"&& "#/search"===show && object==="#/floor" && promise!=null ?(
+        <div>
+            {PromiseNoData(promise, data, error)||
+            (data && <FloorDetail floor={data.data}/>)}
+        </div>) :(<div></div>)}
+
+        {option==="#/delete" && "#/delete" ===show && object==="#/floor" && promise!=null  ?(
+        <div>
+            {PromiseNoData(promise, data, error)||
+            (data && <Alert variant={"info"} message={data.data}></Alert>)}
+        </div>) :(<div></div>)}
+
+
 
 
     

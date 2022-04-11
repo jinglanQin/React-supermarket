@@ -14,16 +14,16 @@ function UpdateProduct({product, handleOnChange, onUpdate, updateRes, info}) {
             <table  className='table table-borderless'>
             <tr>
                 <th>Name</th>
-                <td><input type="text" id="name" name="name" requiredminlength="4" maxLength="" size="70"
+                <td><input type="text" id="Productname" name="Productname" requiredminlength="4" maxLength="" size="70"
                 className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"
-                placeholder={product.name} defaultValue={product.name}  onChange={handleOnChange}></input>
+                placeholder={product.productName} defaultValue={product.productName}  onChange={handleOnChange}></input>
                 </td>
             </tr> 
             <tr> 
                 <th>Quantity</th>
-                <td><input type="text" id="no_of_items" name="no_of_items" requiredminlength="4" maxLength="" size="70"
+                <td><input type="text" id="quantity" name="quantity" requiredminlength="4" maxLength="" size="70"
                  className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"
-                 placeholder={product.no_of_items} defaultValue={product.no_of_items} onChange={handleOnChange} ></input>
+                 placeholder={product.quantity} defaultValue={product.quantity} onChange={handleOnChange} ></input>
                  </td>
             </tr>
             <tr> 
@@ -51,16 +51,30 @@ function UpdateProduct({product, handleOnChange, onUpdate, updateRes, info}) {
             </tr>
             <tr> 
                 <th>Location_x</th>
-                <td><input type="text" id="location_x" name="location_x" requiredminlength="4" maxLength="" size="70"
+                <td><input type="text" id="locationX" name="locationX" requiredminlength="4" maxLength="" size="70"
                 className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"
-                 placeholder={product.location_x} defaultValue={product.location_x}  onChange={handleOnChange}  ></input>
+                 placeholder={product.locationX} defaultValue={product.locationX}  onChange={handleOnChange}  ></input>
                  </td>
             </tr>
             <tr> 
                 <th>Location_y</th>
-                <td><input type="text" id="location_y" name="location_y" requiredminlength="4" maxLength="" size="70"
+                <td><input type="text" id="locationY" name="locationY" requiredminlength="4" maxLength="" size="70"
                 className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"
-                 placeholder={product.location_y} defaultValue={product.location_y} onChange={handleOnChange}  ></input>
+                 placeholder={product.locationY} defaultValue={product.locationY} onChange={handleOnChange}  ></input>
+                 </td>
+            </tr>
+            <tr> 
+                <th>Order Quantity</th>
+                <td><input type="text" id="orderQuantity" name="orderQuantity" requiredminlength="4" maxLength="" size="70"
+                className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"
+                 placeholder={product.orderQuantity} defaultValue={product.orderQuantity} onChange={handleOnChange}  ></input>
+                 </td>
+            </tr>
+            <tr> 
+                <th>Reorder Level</th>
+                <td><input type="text" id="reOrderLevel" name="reOrderLevel" requiredminlength="4" maxLength="" size="70"
+                className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"
+                 placeholder={product.reOrderLevel} defaultValue={product.reOrderLEvel} onChange={handleOnChange}  ></input>
                  </td>
             </tr>
             <tr><button type = "button" onClick={onUpdate} >Update</button></tr>

@@ -1,7 +1,7 @@
 import DataSource from "../api/dataSource";
 import React,{useState, useEffect} from "react";
 import PromiseNoData from "../view/promiseNoData";
-import SearchProductByID from "../view/searchProductByID";
+import SearchProductByName from "../view/searchProductByName";
 import NavBar from "../view/navBar";
 import TwoDMap from "../view/twoDMap";
 const { default: usePromise } = require("../components/usePromise");
@@ -18,13 +18,17 @@ function SearchProduct() {
     const [containers, containerError]= usePromise(promiseContainers);
     useEffect(()=>{setContainerPromise(DataSource.getAllContainers())},[]);
 
+    const [promiseFloors, setFloorsPromise]=React.useState(null);
+    const [floors, setFloors]= usePromise(promiseFloors);
+    useEffect(()=>{setFloorsPromise(DataSource.getAllFloors()) },[]);
+/*
     const key = 'floor_id';
     const [floors, setFloors]=useState("");
     //get distinct floors from containerTable
     useEffect(()=>{if(containers!=null && containers.data!=null){
     setFloors([...new Map(containers.data.map(item =>
     [item[key], item])).values()])
-    }},[containers]);
+    }},[containers]);*/
     
     return (
         <React.Fragment>
@@ -33,20 +37,19 @@ function SearchProduct() {
             </div>
                 
             <div>
-            <SearchProductByID 
+            <SearchProductByName
                 onText={(query)=>setQuery(query)}
-                onSearch={()=> setPromise(DataSource.getProduct(query))}
+                onSearch={()=> setPromise(DataSource.getProductByName(query))}
                 />
             </div>
-            
-            {data!=null ?(
+        
             <div>
                 {PromiseNoData(promise, data, error)||
                 (data && <ProductDetail product={data.data}/>)}
-            </div>) :(<div></div>)} 
+            </div>
             
             {PromiseNoData(promiseContainers, containers, containerError)||
-            floors && <TwoDMap containers={containers.data} floors={floors} product={data}></TwoDMap>}
+            floors && <TwoDMap containers={containers.data} floors={floors.data} product={data}></TwoDMap>}
  
             </React.Fragment>)
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Container} from 'react-bootstrap';
 
-function SearchProductByID({onSearch, onText}) {
+function SearchProductByName({onSearch, onText}) {
     return( 
         <Container>
             <div className ="searchProductByID">
@@ -11,4 +11,4 @@ function SearchProductByID({onSearch, onText}) {
             <br></br>
         </Container>)
 }
-export default SearchProductByID;
+export default SearchProductByName;
