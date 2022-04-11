@@ -12,15 +12,16 @@ function ContainerDetail({container}) {
             <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>centerLocation_x</th>
-                <th>centerLocation_y</th>
-                <th>opposite_x</th>
-                <th>opposite_y</th>
-                <th>roomID</th>
-                <th>room_centerLocation_x</th>
-                <th>room_centerLocation_y</th>
-                <th>room_opposite_x</th>
-                <th>room_opposite_y</th>
+                <th>C-centerPoint</th>
+                <th>C-oppositePoint</th>
+                <th>C-shape</th>
+                <th>C-polygon</th>
+                <th>C-radius</th>
+                <th>Floor</th>
+                <th>floor_centerPoint</th>
+                <th>floor_oppositePoint</th>
+ 
+                <th>floor-shape</th>
 
             </tr>
         </thead>
@@ -28,15 +29,16 @@ function ContainerDetail({container}) {
             <tr key={container.id}>
                 <td>{container.id}</td>
                 <td>{container.name}</td>
-                <td>{container.centerLocation_x}</td>
-                <td>{container.centerLocation_y}</td>
-                <td>{container.opposite_x}</td>
-                <td>{container.opposite_y}</td>
-                <td>{container.room_id}</td>
-                <td>{container.room_centerLocation_x}</td>
-                <td>{container.room_centerLocation_y}</td>
-                <td>{container.room_opposite_x}</td>
-                <td>{container.room_opposite_y}</td>
+                <td>{container.containerCenterPoint}</td>
+                <td>{container.containerOppositePoint}</td>
+                <td>{container.shapeOfContainer}</td>
+                <td>{container.container_polygonPoints}</td>
+                <td>{container.radiusOfContainer}</td>
+                <td>{container.floor_id}</td>
+                <td>{container.floor_centerPoint}</td>
+                <td>{container.floor_oppositePoint}</td>
+          
+                <td>{container.shapeOfFloor}</td>
             </tr>
         </tbody>
         </Table>)}
