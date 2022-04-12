@@ -4,9 +4,8 @@ import { Stage, Layer, Rect, Text, Circle, Line } from 'react-konva';
 import { Container } from "react-bootstrap";
 
 function TwoDMap({containers, floors, product}){
-const [width, setWidth] = useState(window.innerWidth-30);
-const [height, setHeight]=useState(window.innerHeight-30);
-
+const [width, setWidth] = useState(window.innerWidth-20);
+const [height, setHeight]=useState(window.innerHeight-20);
 useEffect(() => {
   const handleResize = (() => setWidth(window.innerWidth), setHeight(window.innerHeight));
   window.addEventListener("resize", handleResize);
@@ -19,7 +18,7 @@ console.log("new"+height);
 
 //add the scale to each floors.
 floors.forEach(function (element) {
-  element.scale = (element.oppositePoint.match(/\d+/g).map(Number)[0]/width)
+  element.scale = (element.oppositePoint.match(/\d+/g).map(Number)[0]/(width))
 });
 const numbers="0,0,100,20,10,20";
 const test= [{name:"one", x: "40", y:"20",width:"10", height:"20"}, {name:"two",x:"60",y:"20",width:"10", height:"20"}];
@@ -27,8 +26,7 @@ const test= [{name:"one", x: "40", y:"20",width:"10", height:"20"}, {name:"two",
     return (
       <div>
         {floors.map(floor => (
-        <Stage key={floor.id} width={width} height={height}>
-                        
+        <Stage key={floor.id} width={width} height={height+300}>
             <Layer key={floor.id} >
                 <Text text={"floor "+floor.floorNumber} fontSize={30} />
                   {floor.shape==="rect" ?(
@@ -85,6 +83,7 @@ const test= [{name:"one", x: "40", y:"20",width:"10", height:"20"}, {name:"two",
                   shadowBlur={10}
                 />) :(<div></div>)))}
               </Layer>
+               
             </Stage>
             ))}
            </div>

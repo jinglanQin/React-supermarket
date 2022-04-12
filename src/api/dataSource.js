@@ -14,7 +14,7 @@ const DataSource = {
             if(data != null){
                 //const params = new URLSearchParams(data);
                 //console.log(params);
-                return axios.get(endpoint+"?"+data);
+                return axios.get(endpoint+data);
             } else {
                 return axios.get(endpoint);
             }
@@ -22,22 +22,22 @@ const DataSource = {
             return axios.post(endpoint, data);
         }
         else if(method==="DELETE"){
-            return axios.delete(endpoint + "?"+"id="+data);
+            return axios.delete(endpoint + data);
         }
     },
 
     getProductByName(param){
-        return this.apiCall("/getProductByName", "GET", "name="+param).then(response => this.handleHTTPError(response))
+        return this.apiCall("/getProductByName"+"?name=", "GET", param).then(response => this.handleHTTPError(response))
         .then(response => response);
     },
 
     getProductByGtin14(param){
-        return this.apiCall("/getProductByGtin14", "GET", "id="+param).then(response => this.handleHTTPError(response))
+        return this.apiCall("/getProductByGtin14"+"?id=", "GET", param).then(response => this.handleHTTPError(response))
         .then(response => response);
     },
 
     deleteProduct(param){
-        return this.apiCall("/deleteProductByGtin14", "DELETE", param).then(response => this.handleHTTPError(response)).then(response => response);;
+        return this.apiCall("/deleteProductByGtin14"+"?id=", "DELETE", param).then(response => this.handleHTTPError(response)).then(response => response);;
     },
 
     insertProduct(param){
@@ -100,27 +100,27 @@ const DataSource = {
     },
 
     insertContainer(param, requestHeader){
-        return this.apiCall("/insertContainer?floorNumber="+requestHeader, "POST", param).then(response => this.handleHTTPError(response))
+        return this.apiCall("/insertContainer"+"?floorNumber="+requestHeader, "POST", param).then(response => this.handleHTTPError(response))
         .then(response => response);
     },
     getContainer(param){
-        return this.apiCall("/getContainer", "GET", "id="+param).then(response => this.handleHTTPError(response))
+        return this.apiCall("/getContainerByName?id=", "GET", param).then(response => this.handleHTTPError(response))
         .then(response => response);
     },
 
     deleteContainer(param){
-        return this.apiCall("/deleteContainer", "DELETE", param).then(response => this.handleHTTPError(response)).then(response => response);;
+        return this.apiCall("/deleteContainerByName", "DELETE", param).then(response => this.handleHTTPError(response)).then(response => response);;
     },
     insertFloor(param){
         return this.apiCall("/insertFloor", "POST", param).then(response => this.handleHTTPError(response))
         .then(response => response);
     },
     getFloor(param){
-        return this.apiCall("/getFloor", "GET", "id="+param).then(response => this.handleHTTPError(response))
+        return this.apiCall("/getFloorByFloorNumber", "GET", "id="+param).then(response => this.handleHTTPError(response))
         .then(response => response);
     },
     deleteFloor(param){
-        return this.apiCall("/deleteFloor", "DELETE", param).then(response => this.handleHTTPError(response)).then(response => response);;
+        return this.apiCall("/deleteFloorByFloorNumber", "DELETE", param).then(response => this.handleHTTPError(response)).then(response => response);;
 
     },
     getAllFloors(){

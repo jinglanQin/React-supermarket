@@ -10,7 +10,7 @@ import Map from "./presenter/indoorMap";
 const App =()=>{
   return (
       <Routes>
-          <Route path="" element={<NavBar/>}></Route>
+          <Route path="" element={<SearchProduct/>}></Route>
           <Route path="staff" element={<MultiFunctions/>}></Route>
           <Route path="customer" element={ <SearchProduct/>}></Route>
           <Route path="map" element={<Map/>}></Route>

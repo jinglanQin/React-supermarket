@@ -44,7 +44,7 @@ function SearchProduct() {
             </div>
         
             <div>
-                {PromiseNoData(promise, data, error)||
+                {promise && PromiseNoData(promise, data, error)||
                 (data && <ProductDetail product={data.data}/>)}
             </div>
             
