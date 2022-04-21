@@ -25,7 +25,7 @@ const DataSource = {
             return axios.delete(endpoint + data);
         }
     },
-
+  
     getProductByName(param){
         return this.apiCall("/getProductByName"+"?name=", "GET", param).then(response => this.handleHTTPError(response))
         .then(response => response);
@@ -37,11 +37,12 @@ const DataSource = {
     },
 
     deleteProduct(param){
-        return this.apiCall("/deleteProductByGtin14"+"?id=", "DELETE", param).then(response => this.handleHTTPError(response)).then(response => response);;
+        return this.apiCall("/deleteProductByGtin14"+"?id=", "DELETE", param).then(response => this.handleHTTPError(response)).then(response => response);
     },
     
     insertProduct(param, requestHeader){
-        return this.apiCall("/insertProduct"+"?floorNumber="+requestHeader, "POST", param);
+        return this.apiCall("/insertProduct"+"?floorNumber="+requestHeader, "POST", param).then(response => this.handleHTTPError(response))
+        .then(response => response);
     },
 
     multiFunction(option, param, object,requestHeader){
@@ -93,7 +94,8 @@ const DataSource = {
 
     updateProduct( body){
         console.log("from datasource"+body.productName);
-        return axios.put("/updateProduct", body);
+        return axios.put("/updateProduct", body).then(response => this.handleHTTPError(response))
+        .then(response => response);
     },
 
     getAllContainers(){
@@ -111,7 +113,7 @@ const DataSource = {
     },
    
     deleteContainer(param){
-        return this.apiCall("/deleteContainerByName", "DELETE", param).then(response => this.handleHTTPError(response)).then(response => response);;
+        return this.apiCall("/deleteContainerByName?id=", "DELETE", param).then(response => this.handleHTTPError(response)).then(response => response);
     },
     insertFloor(param){
         return this.apiCall("/insertFloor", "POST", param).then(response => this.handleHTTPError(response))
@@ -122,7 +124,7 @@ const DataSource = {
         .then(response => response);
     },
     deleteFloor(param){
-        return this.apiCall("/deleteFloorByFloorNumber?id=", "DELETE", param).then(response => this.handleHTTPError(response)).then(response => response);;
+        return this.apiCall("/deleteFloorByFloorNumber?id=", "DELETE", param).then(response => this.handleHTTPError(response)).then(response => response);
 
     },
     getAllFloors(){
