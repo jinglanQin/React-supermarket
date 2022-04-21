@@ -52,8 +52,8 @@ floors.forEach(function (element) {
                 products.data.length>0 ?(
                   products.data.map(product => (product.floor!=null?(
                     product.floor.id===floor.id ? (
-                    <Circle key = {product.gtin14} x={product.location_x/floor.scale} 
-                  y={product.location_y/floor.scale} radius={5} fill="red" />
+                    <Circle key = {product.gtin14} x={product.locationX/floor.scale} 
+                  y={product.locationY/floor.scale} radius={5} fill="red" />
                   ):(<Group></Group>)
                   ):(<Group></Group>)))
                   ):(<Group></Group>)
