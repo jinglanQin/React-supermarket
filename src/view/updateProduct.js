@@ -5,7 +5,7 @@ import Alert from "./alert";
 
 function UpdateProduct({product, handleOnChange, onUpdate, updateRes, info}) {
     if(updateRes){
-        return(<Alert variant={"success"} message={info} ></Alert>)
+        return(info!=null ? (<Alert variant={"success"} message={info} ></Alert>):(<div></div>))
     }
     else{
     return( 
@@ -27,13 +27,6 @@ function UpdateProduct({product, handleOnChange, onUpdate, updateRes, info}) {
                  </td>
             </tr>
             <tr> 
-                <th>Brand</th>
-                <td><input type="text" id="brand" name="brand" requiredminlength="4" maxLength="" size="70"
-                className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"
-                 placeholder={product.brand} defaultValue={product.brand}  onChange={handleOnChange}  ></input>
-                 </td>
-            </tr>
-            <tr> 
                 <th>Price</th>
                 <td><input type="text" id="price" name="price" requiredminlength="4" maxLength="" size="70"
                 className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"
@@ -45,7 +38,7 @@ function UpdateProduct({product, handleOnChange, onUpdate, updateRes, info}) {
                 <th>Floor</th>
                 <td><input type="text" id="floor_id" name="floor_id" requiredminlength="4" maxLength="" size="70"
                 className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"
-                 placeholder={product.floor_id} defaultValue={product.floor_id}  onChange={handleOnChange}  ></input>
+                 placeholder={product.floor.floorNumber} defaultValue={product.floor.floorNumber}  onChange={handleOnChange}  ></input>
                  </td>
 
             </tr>
@@ -77,6 +70,7 @@ function UpdateProduct({product, handleOnChange, onUpdate, updateRes, info}) {
                  placeholder={product.reOrderLevel} defaultValue={product.reOrderLEvel} onChange={handleOnChange}  ></input>
                  </td>
             </tr>
+          
             <tr><button type = "button" onClick={onUpdate} >Update</button></tr>
         </table>)}
 

@@ -7,9 +7,9 @@ function ProductDetail({product}) {
     return( 
         <Container>
             {product==="" ? ( <Alert variant={"warning"} message={"WrongID, Please enter the correct barcode."} ></Alert>) :(
-      <Table  class="table table-striped" >
-        {product["supplier"] === null ? (
-            <div>
+      <Table  className="table table-striped" >
+        {product.supplier === null ? (
+                <tbody>
             <tr >
                 <th>Name</th>
                 <td>{product.productName}</td>
@@ -34,9 +34,13 @@ function ProductDetail({product}) {
                 <th>Location</th>
                 <td>{product.locationX} {" , "}{product.locationY}</td>
             </tr>
-            </div>
+            <tr >
+                <th>Floor</th>
+                <td>{product.floor != null ? (<div>{product.floor.floorNumber}</div>):({})}</td>
+            </tr>
+            </tbody>
             ):(
-           <div>
+           <tbody>
             <tr >
                 <th>Name</th>
                 <td>{product.productName}</td>
@@ -63,13 +67,17 @@ function ProductDetail({product}) {
             </tr>
             <tr >
                 <th>Brand</th>
-                <td>{product.supplier.brand} </td>
+                <td>{} </td>
             </tr>
             <tr>
                 <th>Manufacturer Address</th>
-                <td>{product.supplier.address} </td>
+                <td>{} </td>
             </tr> 
-            </div>)}
+            <tr >
+                <th>Floor</th>
+                <td>{product.floor != null ? (<div>{product.floor.floorNumber}</div>):({})}</td>
+            </tr>
+            </tbody>)}
             </Table>
     )}
     

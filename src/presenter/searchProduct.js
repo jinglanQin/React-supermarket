@@ -11,8 +11,8 @@ function SearchProduct() {
     const [query, setQuery] = React.useState("");
     const [promise, setPromise]=React.useState(null);
     const [data, error] = usePromise(promise);
-    console.log(data);
-    console.log(query);
+   // console.log(data);
+    //console.log(query);
 
     const [promiseContainers, setContainerPromise]=React.useState(null);
     const [containers, containerError]= usePromise(promiseContainers);
@@ -45,11 +45,11 @@ function SearchProduct() {
         
             <div>
                 {promise && PromiseNoData(promise, data, error)||
-                (data && <ProductDetail product={data.data}/>)}
+                (data && <ProductDetail products={data.data}/>)}
             </div>
             
             {PromiseNoData(promiseContainers, containers, containerError)||
-            floors && <TwoDMap containers={containers.data} floors={floors.data} product={data}></TwoDMap>}
+            floors && <TwoDMap containers={containers.data} floors={floors.data} products={data}></TwoDMap>}
  
             </React.Fragment>)
 

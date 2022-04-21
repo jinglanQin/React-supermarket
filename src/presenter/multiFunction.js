@@ -20,12 +20,12 @@ function MultiFunction() {
     const [promise, setPromise] = useState(null);
     const [data, error] = usePromise(promise);
     const [show, setShow]= useState("");
-    const [floorNumber, setFloorNumber]= useState("");
+    const [header, setHeader]= useState("");
     useEffect(()=> {setPromise(null)},[option, object]);
     const [values, setValues]= useState({});
     useEffect(()=> {if(data!=null){setValues(data.data)}},[data]);// set default Values to updateProduct
     const [updateRes, SetUpdateRes]=useState(false);
-
+    console.log(header);
     console.log(data);
     console.log(query);
     console.log(option);
@@ -47,8 +47,8 @@ function MultiFunction() {
             handleSelect={(option)=>setOption(option)}
                 OnSelectObject={(option)=>setObject(option)}
                 onText={(query)=>setQuery(query)}
-                onSearch={()=> setPromise(DataSource.multiFunction(option, query, object,floorNumber), setShow(option), SetUpdateRes(false))}
-                onFloorNumber={(floorNumber)=>setFloorNumber(floorNumber)}
+                onSearch={()=> setPromise(DataSource.multiFunction(option, query, object,header), setShow(option), SetUpdateRes(false))}
+                header={(header)=>setHeader(header)}
                  
             ></MultiFunctionsForStaff>
         </div>
@@ -78,7 +78,7 @@ function MultiFunction() {
                 product={data.data} 
                 handleOnChange={(event)=>{
                     setValues(values =>{return {...values, [event.target.name]:event.target.value}})}}
-                   // setValues((values) =>{return { "name":event.target.value, "location_x":parseInt(event.target.value) }})}}
+                   // setValues(prevValue=>({data:{...value, [event.target.name]:event.target.value}}))}}
                 onUpdate={()=>setPromise(DataSource.updateProduct(values),SetUpdateRes(true), setValues(null))}
                 updateRes={updateRes}
                 info={values}

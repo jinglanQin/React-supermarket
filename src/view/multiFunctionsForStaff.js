@@ -4,7 +4,7 @@ import {Table} from 'react-bootstrap';
 import {useState} from "react";
 import { Dropdown, MenuItem, DropdownButton } from "react-bootstrap";
 
-function MultiFunction({option, object,handleSelect,OnSelectObject, onText, onSearch,onFloorNumber}) {
+function MultiFunction({option, object,handleSelect,OnSelectObject, onText, onSearch,header}) {
 
     return( 
         <Container>
@@ -38,9 +38,9 @@ function MultiFunction({option, object,handleSelect,OnSelectObject, onText, onSe
                 <textarea type="text" placeholder="" id ="select" rows ="6" cols ="50"
                       onChange={event=>onText(event.target.value)}></textarea>
             </div>
-            {option==="#/insert" && object==="#/container" ? ( 
+            {option==="#/insert" && (object==="#/container" || object==="#/product" )? ( 
                 <div className ="">
-                 Floor Number <input type = "text" placeholder="" onChange={event=>onFloorNumber(event.target.value)}/>
+                 Floor Number <input type = "text" placeholder="" onChange={event=>header(event.target.value)}/>
  
             </div>):(<div></div>)}
             <div>
