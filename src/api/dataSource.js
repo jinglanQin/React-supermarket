@@ -96,8 +96,9 @@ const DataSource = {
         }
     },
 
-    updateProduct( body){
-        return axios.put("/updateProduct", body).then(response => this.handleHTTPError(response))
+    updateProduct( body,header){
+        console.log("header"+ header);
+        return axios.put("/updateProduct?floorNumber="+header, body).then(response => this.handleHTTPError(response))
         .then(response => response);
     },
 

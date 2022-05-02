@@ -11,7 +11,7 @@ function SearchProduct() {
     const [query, setQuery] = React.useState("");
     const [promise, setPromise]=React.useState(null);
     const [data, error] = usePromise(promise);
-   // console.log(data);
+    console.log(data);
     //console.log(query);
 
     const [promiseContainers, setContainerPromise]=React.useState(null);

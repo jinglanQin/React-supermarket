@@ -3,7 +3,7 @@ import {Container} from 'react-bootstrap';
 import {Table} from 'react-bootstrap';
 import Alert from "./alert";
 
-function UpdateProduct({product, handleOnChange, onUpdate, updateRes, info}) {
+function UpdateProduct({product, handleOnChange, onUpdate, updateRes, info, header}) {
     if(updateRes){
         return(info!=null ? (<Alert variant={"success"} message={info} ></Alert>):(<div></div>))
     }
@@ -11,6 +11,7 @@ function UpdateProduct({product, handleOnChange, onUpdate, updateRes, info}) {
     return( 
         <Container>
             {product==="" ? (<Alert variant={"warning"} message={"WrongID, Please enter the correct barcode."} ></Alert>) :(
+            product.hasOwnProperty("id")?( 
             <table  className='table table-borderless'>
             <tr>
                 <th>Name</th>
@@ -38,7 +39,7 @@ function UpdateProduct({product, handleOnChange, onUpdate, updateRes, info}) {
                 <th>Floor</th>
                 <td><input type="text" id="floor_id" name="floor_id" requiredminlength="4" maxLength="" size="70"
                 className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"
-                 placeholder={product.floor.floorNumber} defaultValue={product.floor.floorNumber}  onChange={handleOnChange}  ></input>
+                 placeholder={product.floor.floorNumber} defaultValue={product.floor.floorNumber}   onChange={event=>header(event.target.value)} ></input>
                  </td>
 
             </tr>
@@ -72,7 +73,9 @@ function UpdateProduct({product, handleOnChange, onUpdate, updateRes, info}) {
             </tr>
           
             <tr><button type = "button" onClick={onUpdate} >Update</button></tr>
-        </table>)}
+        </table>
+        ):(<div></div>)
+        )}
 
 
         </Container>
