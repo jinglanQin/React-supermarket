@@ -25,15 +25,15 @@ function MultiFunction() {
     const [values, setValues]= useState({});
     useEffect(()=> {if(data!=null){setValues(data.data)}},[data]);// set default Values to updateProduct
     const [updateRes, SetUpdateRes]=useState(false);
-    console.log(header);
-    console.log(data);
-    console.log(query);
-    console.log(option);
-    console.log(error);
-    console.log(show);
-    console.log("values"+values);
-    console.log(updateRes);
-    console.log("object"+object);
+   // console.log(header);
+    //console.log(data);
+    //console.log(query);
+    //console.log(option);
+    //console.log(error);
+   // console.log(show);
+   // console.log("values"+values);
+   // console.log(updateRes);
+   // console.log("object"+object);
     //useEffect(()=> {console.log(values.name)},[values]);
 
     return (

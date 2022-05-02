@@ -15,6 +15,7 @@ const [floors, setFloors]= usePromise(promiseFloors);
 useEffect(()=>{setContainerPromise(DataSource.getAllContainers())},[]);
 useEffect(()=>{setFloorsPromise(DataSource.getAllFloors()) },[]);
 
+
 //const key = 'floor_id';
 //get distinct rooms from containerTable
 /*
@@ -26,13 +27,12 @@ useEffect(()=>{if(containers!=null && containers.data!=null){
 const arrayUniqueByKey = [...new Map(containers.map(item =>
   [item[key], item])).values()];*/
 
-console.log("floors  "+floors);
 
 return (
 <React.Fragment>
   <div>
   {PromiseNoData(promiseContainers, containers, containerError)||
-    floors && <TwoDMap containers={containers.data} floors={floors} product={null}></TwoDMap>}
+    floors && <TwoDMap containers={containers.data} floors={floors.data} product={null}></TwoDMap>}
   </div>
 </React.Fragment>
 )

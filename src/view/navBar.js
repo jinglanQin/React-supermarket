@@ -9,7 +9,7 @@ function navbarView() {
         <Navbar bg="light" expand="lg">
         <Container>
             <LinkContainer to="/">
-           <Navbar.Brand>Shopping Guid Application</Navbar.Brand>
+           <Navbar.Brand>Shopping Guide Application</Navbar.Brand>
            </LinkContainer>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">

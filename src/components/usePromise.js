@@ -11,8 +11,8 @@ function usePromise(promise) {
         if(promise != null)
             promise.then(dt => setData(dt)).catch(er => setError(er));
         }, [promise]); 
-        console.log(data);
-        console.log(error);
+        //console.log(data);
+        //console.log(error);
      return [data, error];
 }
 export default usePromise;

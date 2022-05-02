@@ -2,6 +2,11 @@
 import axios from './httpCommon';
 const DataSource = {
 
+    printTime(param){
+        const d= new Date();
+        console.log("Time for the quering : Start time for  "+param + " is : "+ d.getTime());
+    },
+
     handleHTTPError(response) {
         console.log(response.status===502);
         if (response.status===200)
@@ -12,8 +17,6 @@ const DataSource = {
     apiCall(endpoint, method, data){
         if(method === "GET"){
             if(data != null){
-                //const params = new URLSearchParams(data);
-                //console.log(params);
                 return axios.get(endpoint+data);
             } else {
                 return axios.get(endpoint);
@@ -46,6 +49,7 @@ const DataSource = {
     },
 
     multiFunction(option, param, object,requestHeader){
+        this.printTime(option+ " "+ object);
         if(object==="#/product"){
             if(option === "#/search"){
                 return this.getProductByGtin14(param);
@@ -93,7 +97,6 @@ const DataSource = {
     },
 
     updateProduct( body){
-        console.log("from datasource"+body.productName);
         return axios.put("/updateProduct", body).then(response => this.handleHTTPError(response))
         .then(response => response);
     },
@@ -104,6 +107,7 @@ const DataSource = {
     },
 
     insertContainer(param, requestHeader){
+        this.printTime("insert container");
         return this.apiCall("/insertContainer"+"?floorNumber="+requestHeader, "POST", param).then(response => this.handleHTTPError(response))
         .then(response => response);
     },
@@ -116,6 +120,7 @@ const DataSource = {
         return this.apiCall("/deleteContainerByName?id=", "DELETE", param).then(response => this.handleHTTPError(response)).then(response => response);
     },
     insertFloor(param){
+        this.printTime("insert floor");
         return this.apiCall("/insertFloor", "POST", param).then(response => this.handleHTTPError(response))
         .then(response => response);
     },

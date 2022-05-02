@@ -23,7 +23,7 @@ floors.forEach(function (element) {
     return (
       <Group>
         {floors.map(floor => (
-        <Stage key={floor.id} width={width} height={height+300}>
+        <Stage key={floor.id} width={width} height={height+250}>
             <Layer key={floor.id} >
                 <Text text={"floor "+floor.floorNumber} fontSize={30} />
                   {floor.shape==="rect" ?(
