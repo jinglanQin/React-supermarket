@@ -3,14 +3,14 @@ import {Container} from 'react-bootstrap';
 import {Table} from 'react-bootstrap';
 import Alert from "./alert";
 
-function UpdateProduct({product, handleOnChange, onUpdate, updateRes, info, header}) {
+function UpdateProduct({product, handleOnChange, onUpdate, updateRes, info, header, startTime}) {
     if(updateRes){
         return(info!=null ? (<Alert variant={"success"} message={info} ></Alert>):(<div></div>))
     }
     else{
     return( 
         <Container>
-            {product==="" ? (<Alert variant={"warning"} message={"WrongID, Please enter the correct barcode."} ></Alert>) :(
+            {product==="" ? (<Alert variant={"warning"} message={"WrongID, Please enter the correct barcode."} startTime={startTime} ></Alert>) :(
             product.hasOwnProperty("id")?( 
             <table  className='table table-borderless'>
             <tr>

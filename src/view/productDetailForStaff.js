@@ -3,10 +3,10 @@ import {Container} from 'react-bootstrap';
 import Alert from "./alert";
 import {Table} from 'react-bootstrap';
 
-function ProductDetail({product}) {
+function ProductDetail({product, startTime}) {
     return( 
         <Container>
-            {product==="" ? ( <Alert variant={"warning"} message={"WrongID, Please enter the correct barcode."} ></Alert>) :(
+            {product==="" ? ( <Alert variant={"warning"} message={"WrongID, Please enter the correct barcode."} startTime={startTime} ></Alert>) :(
       <Table  className="table table-striped" >
         {product.supplier === null ? (
                 <tbody>

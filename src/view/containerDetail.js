@@ -3,10 +3,10 @@ import {Container} from 'react-bootstrap';
 import {Table} from 'react-bootstrap';
 import Alert from "./alert";
 
-function ContainerDetail({container}) {
+function ContainerDetail({container, startTime}) {
     return( 
         <Container>
-            {container==="" ? ( <Alert variant={"warning"} message={"WrongID, Please enter the correct barcode."} ></Alert>) :(
+            {container==="" ? ( <Alert variant={"warning"} message={"WrongID, Please enter the correct barcode."} startTime={startTime } ></Alert>) :(
             <Table striped border="true" hover>
         <thead>
             <tr>

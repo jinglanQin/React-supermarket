@@ -33,6 +33,10 @@ function MultiFunction() {
     console.log(show);
     console.log("values"+values);
     console.log(updateRes);
+
+    const [startTime, setStartTime] = useState(null);
+    const d= new Date();
+
    // console.log("object"+object);
     //useEffect(()=> {console.log(values.name)},[values]);
 
@@ -47,7 +51,7 @@ function MultiFunction() {
             handleSelect={(option)=>setOption(option)}
                 OnSelectObject={(option)=>setObject(option)}
                 onText={(query)=>setQuery(query)}
-                onSearch={()=> setPromise(DataSource.multiFunction(option, query, object,header), setShow(option), SetUpdateRes(false))}
+                onSearch={()=> setPromise(DataSource.multiFunction(option, query, object,header), setShow(option), SetUpdateRes(false),setStartTime(d.getTime()))}
                 header={(header)=>setHeader(header)}
                  
             ></MultiFunctionsForStaff>
@@ -55,26 +59,26 @@ function MultiFunction() {
 
         {option==="#/search"&& "#/search"===show && object==="#/product" && promise!=null ?(
         <div>
-            {PromiseNoData(promise, data, error)||
-            (data && <ProductDetail product={data.data}/>)}
+            {PromiseNoData(promise, data, error, startTime)||
+            (data && <ProductDetail product={data.data} startTime={startTime}/>)}
         </div>) :(<div></div>)}
 
         {option==="#/delete" && "#/delete" ===show && object==="#/product" && promise!=null  ?(
         <div>
-            {PromiseNoData(promise, data, error)||
-            (data && <Alert variant={"info"} message={data.data}></Alert>)}
+            {PromiseNoData(promise, data, error, startTime)||
+            (data && <Alert variant={"info"} message={data.data} startTime={startTime}></Alert>)}
         </div>) :(<div></div>)}
 
         {option==="#/insert" && "#/insert" ===show && object==="#/product" && promise!=null ?(
         <div>
-            {PromiseNoData(promise, data, error)||
-            (data && <Alert variant={"info"} message={data.data}></Alert>)}
+            {PromiseNoData(promise, data, error,startTime)||
+            (data && <Alert variant={"info"} message={data.data} startTime={startTime}></Alert>)}
         </div>) :(<div></div>)}
 
 
         { option==="#/update"&& "#/update"===show && object==="#/product"&& promise!=null ?(
         <div>
-            {PromiseNoData(promise, data, error)||
+            {PromiseNoData(promise, data, error, startTime)||
             (data && <UpdateProduct 
                 product={data.data} 
                 handleOnChange={(event)=>{
@@ -90,38 +94,38 @@ function MultiFunction() {
 
         {option==="#/search"&& "#/search"===show && object==="#/container" && promise!=null ?(
         <div>
-            {PromiseNoData(promise, data, error)||
-            (data && <ContainerDetail container={data.data}/>)}
+            {PromiseNoData(promise, data, error,startTime)||
+            (data && <ContainerDetail container={data.data} startTime={startTime}/>)}
         </div>) :(<div></div>)}
 
 
         {option==="#/insert" && "#/insert" ===show && object==="#/container" && promise!=null ?(
         <div>
-            {PromiseNoData(promise, data, error)||
-            (data && <Alert variant={"info"} message={data.data}></Alert>)}
+            {PromiseNoData(promise, data, error,startTime)||
+            (data && <Alert variant={"info"} message={data.data} startTime ={startTime}></Alert>)}
         </div>) :(<div></div>)}
 
         {option==="#/delete" && "#/delete" ===show && object==="#/container" && promise!=null  ?(
         <div>
-            {PromiseNoData(promise, data, error)||
-            (data && <Alert variant={"info"} message={data.data}></Alert>)}
+            {PromiseNoData(promise, data, error,startTime)||
+            (data && <Alert variant={"info"} message={data.data} startTime={startTime}></Alert>)}
         </div>) :(<div></div>)}
 
         {option==="#/insert" && "#/insert" ===show && object==="#/floor" && promise!=null ?(
         <div>
-            {PromiseNoData(promise, data, error)||
-            (data && <Alert variant={"info"} message={data.data}></Alert>)}
+            {PromiseNoData(promise, data, error,startTime)||
+            (data && <Alert variant={"info"} message={data.data} startTime={startTime}></Alert>)}
         </div>) :(<div></div>)}
         {option==="#/search"&& "#/search"===show && object==="#/floor" && promise!=null ?(
         <div>
-            {PromiseNoData(promise, data, error)||
-            (data && <FloorDetail floor={data.data}/>)}
+            {PromiseNoData(promise, data, error,startTime)||
+            (data && <FloorDetail floor={data.data} startTime={startTime}/>)}
         </div>) :(<div></div>)}
 
         {option==="#/delete" && "#/delete" ===show && object==="#/floor" && promise!=null  ?(
         <div>
-            {PromiseNoData(promise, data, error)||
-            (data && <Alert variant={"info"} message={data.data}></Alert>)}
+            {PromiseNoData(promise, data, error,startTime)||
+            (data && <Alert variant={"info"} message={data.data} startTime={startTime}></Alert>)}
         </div>) :(<div></div>)}
 
 

@@ -3,10 +3,10 @@ import {Container} from 'react-bootstrap';
 import {Table} from 'react-bootstrap';
 import Alert from "./alert";
 
-function FloorDetail({floor}) {
+function FloorDetail({floor, startTime}) {
     return( 
         <div>
-            {floor==="" ? ( <Alert variant={"warning"} message={"WrongID, Please enter the correct floor number."} ></Alert>) :(
+            {floor==="" ? ( <Alert variant={"warning"} message={"WrongID, Please enter the correct floor number."} startTime={startTime}></Alert>) :(
             <Table striped border="true" hover>
         <table  className='table table-borderless'>
             <thead></thead>

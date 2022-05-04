@@ -11,7 +11,9 @@ function SearchProduct() {
     const [query, setQuery] = React.useState("");
     const [promise, setPromise]=React.useState(null);
     const [data, error] = usePromise(promise);
-    console.log(data);
+
+    const [startTime, setStartTime] = useState(null);
+    const d= new Date();
     //console.log(query);
 
     const [promiseContainers, setContainerPromise]=React.useState(null);
@@ -29,7 +31,9 @@ function SearchProduct() {
     setFloors([...new Map(containers.data.map(item =>
     [item[key], item])).values()])
     }},[containers]);*/
-    
+    console.log(data);
+    console.log(floors);
+    console.log(containers);
     return (
         <React.Fragment>
             <div>
@@ -39,13 +43,13 @@ function SearchProduct() {
             <div>
             <SearchProductByName
                 onText={(query)=>setQuery(query)}
-                onSearch={()=> setPromise(DataSource.getProductByName(query))}
+                onSearch={()=> setPromise(DataSource.getProductByName(query)),setStartTime(d.getTime())}
                 />
             </div>
         
             <div>
                 {promise && PromiseNoData(promise, data, error)||
-                (data && <ProductDetail products={data.data}/>)}
+                (data && <ProductDetail products={data.data} startTime={startTime}/>)}
             </div>
             
             {PromiseNoData(promiseContainers, containers, containerError)||

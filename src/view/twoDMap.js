@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup, MapControl,Polygon } from 'reac
 import { Stage, Layer, Rect, Text, Circle, Line } from 'react-konva';
 import { Container } from "react-bootstrap";
 import Group from 'react-group';
+import { container } from "aws-amplify";
 
 function TwoDMap({containers, floors, products}){
 const [width, setWidth] = useState(window.innerWidth-20);
@@ -65,7 +66,7 @@ floors.forEach(function (element) {
                   y={container.centerPoint.match(/\d+/g).map(Number)[1]/floor.scale} 
                   radius={container.containerRadius/floor.scale} 
                   stroke="black"  />) :(<Group></Group>)):(<Group></Group>)))}
-        
+                  
                 {containers.map(container => (container.floor!=null ?((container.floor.id===floor.id && container.shape==="rect")? (
                 <Rect key={container.id}
                   x={container.centerPoint.match(/\d+/g).map(Number)[0]/floor.scale}

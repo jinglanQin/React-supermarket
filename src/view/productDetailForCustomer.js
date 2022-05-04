@@ -3,11 +3,11 @@ import {Container} from 'react-bootstrap';
 import {Table} from 'react-bootstrap';
 import Alert from "./alert";
 // OBS add supplier!
-function ProductDetailForCustomer({products}) {
+function ProductDetailForCustomer({products,startTime}) {
     return( 
         <Container>
              
-            {!products && products.length==0? (<Alert variant={"warning"} message={"WrongID, Please enter the correct barcode."} ></Alert>) 
+            {!products && products.length==0? (<Alert variant={"warning"} message={"WrongID, Please enter the correct barcode."} startTime={startTime} ></Alert>) 
             :( products.map ( product=> (<Table striped border="true" hover>
                 <thead>
                     <tr>
