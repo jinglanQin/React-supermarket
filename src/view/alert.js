@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
     
 const Alert = ({ variant, message}) => {
   const [show, setShow] = useState(true)
-  const d= new Date(); 
   useEffect(() => {
     const timeId = setTimeout(() => {
       setShow(false)
@@ -19,7 +18,7 @@ const Alert = ({ variant, message}) => {
 
   return (
     <div className={`alert alert-${variant}`}>
-      {message+ " Quering time (ms) is : "+(d.getTime())}
+      {message}
     </div>
   )
 

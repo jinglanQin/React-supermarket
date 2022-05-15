@@ -1,12 +1,6 @@
 
 import axios from './httpCommon';
 const DataSource = {
-
-    printTime(param){
-        const d= new Date();
-        console.log("Time for the quering : Start time for  "+param + " is : "+ d.getTime());
-    },
-
     handleHTTPError(response) {
         console.log(response.status===502);
         if (response.status===200)
@@ -34,13 +28,13 @@ const DataSource = {
         .then(response => response);
     },
 
-    getProductByGtin14(param){
-        return this.apiCall("/getProductByGtin14"+"?id=", "GET", param).then(response => this.handleHTTPError(response))
+    getProductByGtin(param){
+        return this.apiCall("/getProductByGtin"+"?id=", "GET", param).then(response => this.handleHTTPError(response))
         .then(response => response);
     },
 
     deleteProduct(param){
-        return this.apiCall("/deleteProductByGtin14"+"?id=", "DELETE", param).then(response => this.handleHTTPError(response)).then(response => response);
+        return this.apiCall("/deleteProductByGtin"+"?id=", "DELETE", param).then(response => this.handleHTTPError(response)).then(response => response);
     },
     
     insertProduct(param, requestHeader){
@@ -49,10 +43,9 @@ const DataSource = {
     },
 
     multiFunction(option, param, object,requestHeader){
-        this.printTime(option+ " "+ object);
         if(object==="#/product"){
             if(option === "#/search"){
-                return this.getProductByGtin14(param);
+                return this.getProductByGtin(param);
             }
             else if(option==="#/delete") {
                 return this.deleteProduct(param);
@@ -108,7 +101,6 @@ const DataSource = {
     },
 
     insertContainer(param, requestHeader){
-        this.printTime("insert container");
         return this.apiCall("/insertContainer"+"?floorNumber="+requestHeader, "POST", param).then(response => this.handleHTTPError(response))
         .then(response => response);
     },
