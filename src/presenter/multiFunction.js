@@ -33,8 +33,6 @@ function MultiFunction() {
     console.log(show);
     console.log("values"+values);
     console.log(updateRes);
-   // console.log("object"+object);
-    //useEffect(()=> {console.log(values.name)},[values]);
 
     return (
         <React.Fragment>

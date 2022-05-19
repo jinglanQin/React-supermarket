@@ -1,7 +1,5 @@
 import React,{useState, useEffect} from "react";
-import { MapContainer, TileLayer, Marker, Popup, MapControl,Polygon } from 'react-leaflet'
 import { Stage, Layer, Rect, Text, Circle, Line } from 'react-konva';
-import { Container } from "react-bootstrap";
 import Group from 'react-group';
 
 function TwoDMap({containers, floors, products}){
@@ -96,30 +94,3 @@ floors.forEach(function (element) {
 }
 
 export default TwoDMap;
-
-
-/*
-            <Circle x={200} y={100} radius={50} fill="green" />
-             <Line
-                  x={200}
-                  y={300}
-                  points={[0, 0, 100, 0, 100, 100]}
-                  tension={0.5}
-                  closed
-                  stroke="black"
-                  fillLinearGradientStartPoint={{ x: -50, y: -50 }}
-                  fillLinearGradientEndPoint={{ x: 50, y: 50 }}
-                />
-                
-                <Line
-                  x={0}
-                  y={0}
-                  points={[0, 0, 100, 0, 100, 100]}
-                  tension={0}
-                  closed
-                  stroke="black"
-                  fillLinearGradientStartPoint={{ x: -50, y: -50 }}
-                  fillLinearGradientEndPoint={{ x: 50, y: 50 }}
-                  fillLinearGradientColorStops={[0, 'red', 1, 'yellow']}
-                />
-*/

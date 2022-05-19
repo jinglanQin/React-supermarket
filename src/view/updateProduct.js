@@ -13,12 +13,10 @@ function UpdateProduct({product, handleOnChange, onUpdate, updateRes, info, head
             {product==="" ? (<Alert variant={"warning"} message={"WrongID, Please enter the correct barcode."} ></Alert>) :(
             product.hasOwnProperty("id")?( 
             <table  className='table table-borderless'>
+           <tbody>
             <tr>
                 <th>Name</th>
-                <td><input type="text" id="Productname" name="Productname" requiredminlength="4" maxLength="" size="70"
-                className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"
-                placeholder={product.productName} defaultValue={product.productName}  onChange={handleOnChange}></input>
-                </td>
+                <td>{product.productName}</td>
             </tr> 
             <tr> 
                 <th>Quantity</th>
@@ -68,11 +66,12 @@ function UpdateProduct({product, handleOnChange, onUpdate, updateRes, info, head
                 <th>Reorder Level</th>
                 <td><input type="text" id="reOrderLevel" name="reOrderLevel" requiredminlength="4" maxLength="" size="70"
                 className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"
-                 placeholder={product.reOrderLevel} defaultValue={product.reOrderLEvel} onChange={handleOnChange}  ></input>
+                 placeholder={product.reOrderLevel} defaultValue={product.reOrderLevel} onChange={handleOnChange}  ></input>
                  </td>
             </tr>
           
             <tr><button type = "button" onClick={onUpdate} >Update</button></tr>
+            </tbody>
         </table>
         ):(<div></div>)
         )}

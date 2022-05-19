@@ -21,14 +21,6 @@ function SearchProduct() {
     const [promiseFloors, setFloorsPromise]=React.useState(null);
     const [floors, setFloors]= usePromise(promiseFloors);
     useEffect(()=>{setFloorsPromise(DataSource.getAllFloors()) },[]);
-/*
-    const key = 'floor_id';
-    const [floors, setFloors]=useState("");
-    //get distinct floors from containerTable
-    useEffect(()=>{if(containers!=null && containers.data!=null){
-    setFloors([...new Map(containers.data.map(item =>
-    [item[key], item])).values()])
-    }},[containers]);*/
     
     return (
         <React.Fragment>

@@ -6,6 +6,7 @@ import {Table} from 'react-bootstrap';
 function ProductDetail({product}) {
     return( 
         <Container>
+           <Alert variant={"success"} message={" "} ></Alert>
             {product==="" ? ( <Alert variant={"warning"} message={"WrongID, Please enter the correct barcode."} ></Alert>) :(
       <Table  className="table table-striped" >
             <tbody>

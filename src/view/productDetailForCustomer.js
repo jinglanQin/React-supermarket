@@ -2,7 +2,6 @@ import React from 'react';
 import {Container} from 'react-bootstrap';
 import {Table} from 'react-bootstrap';
 import Alert from "./alert";
-// OBS add supplier!
 function ProductDetailForCustomer({products}) {
     return( 
         <Container>

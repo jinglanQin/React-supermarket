@@ -1,6 +1,11 @@
 
 import axios from './httpCommon';
 const DataSource = {
+    printTime(param){
+        const d= new Date();
+        console.log("Quering time started: Start time for  "+param + " is : "+ d.getTime());
+    },
+
     handleHTTPError(response) {
         console.log(response.status===502);
         if (response.status===200)
@@ -43,6 +48,7 @@ const DataSource = {
     },
 
     multiFunction(option, param, object,requestHeader){
+        this.printTime(option+ " "+ object);
         if(object==="#/product"){
             if(option === "#/search"){
                 return this.getProductByGtin(param);
@@ -56,7 +62,7 @@ const DataSource = {
                 return this.insertProduct(param, requestHeader);
             }
             else if(option==="#/update"){
-                return this.getProductByGtin14(param);
+                return this.getProductByGtin(param);
             }
         }
 
@@ -90,7 +96,7 @@ const DataSource = {
     },
 
     updateProduct( body,header){
-        console.log("header"+ header);
+        this.printTime(" Real update product ");
         return axios.put("/updateProduct?floorNumber="+header, body).then(response => this.handleHTTPError(response))
         .then(response => response);
     },
