@@ -13,7 +13,6 @@ function ProductDetailForCustomer({products}) {
                         <th>Name</th>
                         <th>Quantity</th>
                         <th>Price</th>
-                        <th>Location</th>
                         <th>Floor</th>
                         <th>Manufacturer</th>
                         <th>Brand</th>
@@ -24,7 +23,6 @@ function ProductDetailForCustomer({products}) {
                         <td>{product.productName}</td>
                         <td>{product.quantity} st</td>
                         <td>{product.price} kr</td>
-                        <td>{product.locationX} {"  "}{product.locationY}</td>
                         <td>{product.floor!=null ? (<>{product.floor.floorNumber}</>):(<div></div>)} </td>
                         <td>{product.supplier!=null ? (<>{product.supplier.manufacturer}</>):(<div></div>)}</td>
                         <td>{product.supplier!=null ? (<>{product.supplier.brand}</>):(<div></div>)} </td>

@@ -10,7 +10,7 @@ function ProductDetail({product}) {
             {product==="" ? ( <Alert variant={"warning"} message={"WrongID, Please enter the correct barcode."} ></Alert>) :(
       <Table  className="table table-striped" >
             <tbody>
-            <tr >
+            <tr key={product.id}>
                 <th>Name</th>
                 <td>{product.productName}</td>
             </tr>
@@ -36,15 +36,15 @@ function ProductDetail({product}) {
             </tr>
             <tr >
                 <th>Brand</th>
-                <td>{product.supplier != null ? (<div>{product.supplier.brand}</div>):({})}</td>
+                <td>{product.supplier != null ? (<div>{product.supplier.brand}</div>):(<div></div>)}</td>
             </tr>
             <tr>
                 <th>Manufacturer Address</th>
-                <td>{product.supplier != null ? (<div>{product.supplier.address}</div>):({})}</td>
+                <td>{product.supplier != null ? (<div>{product.supplier.address}</div>):(<div></div>)}</td>
             </tr> 
             <tr >
                 <th>Floor</th>
-                <td>{product.floor != null ? (<div>{product.floor.floorNumber}</div>):({})}</td>
+                <td>{product.floor != null ? (<div>{product.floor.floorNumber}</div>):(<div></div>)}</td>
             </tr>
             </tbody>
            

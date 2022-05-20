@@ -34,10 +34,13 @@ function UpdateProduct({product, handleOnChange, onUpdate, updateRes, info, head
 
             </tr>
             <tr> 
-                <th>Floor</th>
-                <td><input type="text" id="floor_id" name="floor_id" requiredminlength="4" maxLength="" size="70"
+                <th>Floor</th>          
+                <td>{product.floor != null ? (<input type="text" id="floor_id" name="floor_id" requiredminlength="4" maxLength="" size="70"
                 className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"
-                 placeholder={product.floor.floorNumber} defaultValue={product.floor.floorNumber}   onChange={event=>header(event.target.value)} ></input>
+                 placeholder={product.floor.floorNumber} defaultValue={product.floor.floorNumber}   onChange={event=>header(event.target.value)} ></input>)
+                 :(<input type="text" id="floor_id" name="floor_id" requiredminlength="4" maxLength="" size="70"
+                 className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"
+                  defaultValue={0}   onChange={event=>header(event.target.value)} ></input>)}
                  </td>
 
             </tr>
